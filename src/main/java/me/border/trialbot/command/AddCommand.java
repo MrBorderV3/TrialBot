@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             }
             ticket.add(memberToAdd);
             e.reply("Successfully added " + memberToAdd.getEffectiveName() + " to the ticket!");
-        } catch (ArrayIndexOutOfBoundsException ex){
+        } catch (IndexOutOfBoundsException ex){
             e.reply("Member does not exist or you have failed to mention a member.");
         }
     }

@@ -47,7 +47,7 @@ public class RemoveCommand extends Command {
             }
             ticket.remove(memberToRemove);
             e.reply("Successfully removed " + memberToRemove.getEffectiveName() + " from the ticket!");
-        } catch (ArrayIndexOutOfBoundsException ex){
+        } catch (IndexOutOfBoundsException ex){
             e.reply("Member does not exist or you have failed to mention a member.");
         }
     }

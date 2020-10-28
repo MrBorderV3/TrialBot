@@ -2,11 +2,9 @@ package me.border.trialbot;
 
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
-import me.border.trialbot.command.AddCommand;
-import me.border.trialbot.command.CloseCommand;
-import me.border.trialbot.command.NewCommand;
-import me.border.trialbot.command.RemoveCommand;
+import me.border.trialbot.command.*;
 import me.border.trialbot.config.Config;
+import me.border.trialbot.listener.ChatListener;
 import me.border.trialbot.module.Logs;
 import me.border.trialbot.module.TicketManager;
 import me.border.trialbot.storage.DB;
@@ -95,7 +93,7 @@ public class Main {
         builder.setPrefix("$");
         builder.setHelpWord("help");
         builder.setOwnerId("456802337030144011");
-        builder.addCommands(new NewCommand(), new AddCommand(), new RemoveCommand(), new CloseCommand());
+        builder.addCommands(new NewCommand(), new AddCommand(), new RemoveCommand(), new CloseCommand(), new XPCommand(), new  LevelCommand(), new LeaderboardCommand());
 
         commandClient = builder.build();
     }
@@ -105,7 +103,7 @@ public class Main {
         JDABuilder builder = JDABuilder.createDefault(token);
         builder.addEventListeners(commandClient);
         builder.setStatus(OnlineStatus.ONLINE);
-        builder.addEventListeners(new TicketManager.TicketListener());
+        builder.addEventListeners(new TicketManager.TicketListener(), new ChatListener());
         Collection<GatewayIntent> intents = new HashSet<>(Arrays.asList(GatewayIntent.values()));
         builder.setEnabledIntents(intents);
 
